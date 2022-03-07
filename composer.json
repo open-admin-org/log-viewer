@@ -1,0 +1,33 @@
+{
+    "name": "open-admin-ext/log-viewer",
+    "description": "Log viewer for open admin",
+    "type": "library",
+    "keywords": ["open-admin", "log", "viewer"],
+    "homepage": "https://github.com/open-admin-org/log-viewer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "open-admin",
+            "email": "info@open-admin.org"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "open-admin-org/open-admin": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpenAdmin\\Admin\\LogViewer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OpenAdmin\\Admin\\LogViewer\\LogViewerServiceProvider"
+            ]
+        }
+    }
+}
