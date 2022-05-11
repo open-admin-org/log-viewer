@@ -2,10 +2,10 @@
 
 namespace OpenAdmin\Admin\LogViewer;
 
-use OpenAdmin\Admin\Facades\Admin;
-use OpenAdmin\Admin\Layout\Content;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use OpenAdmin\Admin\Facades\Admin;
+use OpenAdmin\Admin\Layout\Content;
 
 class LogController extends Controller
 {
