@@ -2,9 +2,9 @@ Log viewer for laravel-admin
 ============================
 
 [![StyleCI](https://styleci.io/repos/491059283/shield?branch=master)](https://styleci.io/repos/491059283)
-[![Packagist](https://img.shields.io/packagist/l/open-admin-ext/log-viewer.svg?maxAge=2592000)](https://packagist.org/packages/open-admin-ext/log-viewer)
+[![Packagist](https://img.shields.io/github/license/open-admin-org/log-viewer.svg?style=flat-square&color=brightgreen)](https://packagist.org/packages/open-admin-ext/log-viewer)
 [![Total Downloads](https://img.shields.io/packagist/dt/open-admin-ext/log-viewer.svg?style=flat-square)](https://packagist.org/packages/open-admin-ext/log-viewer)
-[![Pull request welcome](https://img.shields.io/badge/pr-welcome-green.svg?style=flat-square)]()
+[![Pull request welcome](https://img.shields.io/badge/pr-welcome-green.svg?style=flat-square&color=brightgreen)]()
 
 ## Screenshot
 
@@ -14,7 +14,7 @@ Log viewer for laravel-admin
 ## Installation
 
 ```
-$ composer require open-admin-ext/log-viewer -vvv
+$ composer require open-admin-ext/log-viewer
 
 $ php artisan admin:import log-viewer
 ```
