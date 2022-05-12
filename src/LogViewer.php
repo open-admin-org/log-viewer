@@ -101,9 +101,12 @@ class LogViewer extends Extension
      *
      * @return array
      */
-    public function getLogFiles($count = 20)
+    public function getLogFiles($count = 20, $only_files = false)
     {
         $files = glob(storage_path('logs/*'));
+        if ($only_files) {
+            $files = array_filter($files, 'is_file');
+        }
         $files = array_combine($files, array_map('filemtime', $files));
         arsort($files);
 
@@ -119,7 +122,7 @@ class LogViewer extends Extension
      */
     public function getLastModifiedLog()
     {
-        $logs = $this->getLogFiles();
+        $logs = $this->getLogFiles(20, true);
 
         return current($logs);
     }
