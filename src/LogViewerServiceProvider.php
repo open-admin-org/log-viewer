@@ -8,7 +8,7 @@ class LogViewerServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-admin-logs');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'open-admin-logs');
 
         LogViewer::boot();
     }

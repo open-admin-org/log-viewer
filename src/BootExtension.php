@@ -17,7 +17,7 @@ trait BootExtension
     }
 
     /**
-     * Register routes for laravel-admin.
+     * Register routes for open-admin.
      *
      * @return void
      */

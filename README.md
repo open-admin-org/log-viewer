@@ -1,4 +1,4 @@
-Log viewer for laravel-admin
+Log viewer for open-admin
 ============================
 
 [![StyleCI](https://styleci.io/repos/491059283/shield?branch=main)](https://styleci.io/repos/491059283)

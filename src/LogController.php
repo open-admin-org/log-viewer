@@ -20,7 +20,7 @@ class LogController extends Controller
 
             $viewer = new LogViewer($file);
 
-            $content->body(view('laravel-admin-logs::logs', [
+            $content->body(view('open-admin-logs::logs', [
                 'logs'      => $viewer->fetch($offset),
                 'logFiles'  => $viewer->getLogFiles(),
                 'fileName'  => $viewer->file,
