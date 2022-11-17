@@ -231,7 +231,6 @@ class LogViewer extends Extension
         }
         fseek($f, -1, SEEK_CUR);
 
-        // 从前往后读,上一页
         // Start reading
         if ($seek > 0) {
             $output = '';
@@ -252,7 +251,6 @@ class LogViewer extends Extension
                 $this->pageOffset['end'] -= $_;
             }
 
-        // 从后往前读,下一页
         } else {
             $output = '';
 
