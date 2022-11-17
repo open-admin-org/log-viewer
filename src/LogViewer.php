@@ -19,6 +19,27 @@ class LogViewer extends Extension
     public $file;
 
     /**
+     * Enable bypass of protected files in request
+     *
+     * @var boolean
+     */
+    public $bypass_protected_urls = false;
+
+    /**
+     * Array with strings to find in filenames
+     *
+     * @var array
+     */
+    public $bypass_protected_urls_find = [];
+
+    /**
+     * Array with strings to replace in filenames
+     *
+     * @var array
+     */
+    public $bypass_protected_urls_replace = [];
+
+    /**
      * The path of log file.
      *
      * @var string
@@ -53,13 +74,33 @@ class LogViewer extends Extension
      */
     public function __construct($file = null)
     {
+        $this->bypass_protected_urls = static::config('bypass_protected_urls', false);
+        if ($this->bypass_protected_urls){
+            $this->bypass_protected_urls_find = static::config('bypass_protected_urls_find', ['.']);
+            $this->bypass_protected_urls_replace = static::config('bypass_protected_urls_replace', ['[dot]']);
+        }
+
         if (is_null($file)) {
             $file = $this->getLastModifiedLog();
+        }
+
+        if ($this->bypass_protected_urls){
+            $file = $this->revert_bypass($file);
         }
 
         $this->file = $file;
 
         $this->getFilePath();
+    }
+
+    public function set_bypass($file)
+    {
+        return str_replace($this->bypass_protected_urls_find,$this->bypass_protected_urls_replace,$file);
+    }
+
+    public function revert_bypass($file)
+    {
+        return str_replace($this->bypass_protected_urls_replace,$this->bypass_protected_urls_find,$file);
     }
 
     /**
@@ -206,12 +247,12 @@ class LogViewer extends Extension
 
             while ($lines++ < 0) {
                 $strpos = strrpos($output, "\n[20") + 1;
-                $_ = mb_strlen($output, '8bit') - $strpos;
+                $_      = mb_strlen($output, '8bit') - $strpos;
                 $output = substr($output, 0, $strpos);
                 $this->pageOffset['end'] -= $_;
             }
 
-            // 从后往前读,下一页
+        // 从后往前读,下一页
         } else {
             $output = '';
 
@@ -343,10 +384,10 @@ TPL;
 
         foreach (array_chunk($logs, 5) as $log) {
             $parsed[] = [
-                'time'  => $log[0] ?? '',
-                'env'   => $log[1] ?? '',
-                'level' => $log[2] ?? '',
-                'info'  => $log[3] ?? '',
+                'time'  => $log[0]      ?? '',
+                'env'   => $log[1]      ?? '',
+                'level' => $log[2]      ?? '',
+                'info'  => $log[3]      ?? '',
                 'trace' => trim($log[4] ?? ''),
             ];
         }

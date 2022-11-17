@@ -66,7 +66,7 @@
                 <ul class="nav nav-pills flex-column">
                     @foreach($logFiles as $logFile)
                         <li @if($logFile == $fileName)class="active"@endif>
-                            <a href="{{ route('log-viewer-file', ['file' => $logFile]) }}"><i class="icon-{{ ($logFile == $fileName) ? 'folder-open' : 'folder' }}"></i>{{ $logFile }}</a>
+                            <a href="{{ route('log-viewer-file', ['file' => str_replace($bypass_protected_urls_find,$bypass_protected_urls_replace,$logFile)]) }}"><i class="icon-{{ ($logFile == $fileName) ? 'folder-open' : 'folder' }}"></i>{{ $logFile }}</a>
                         </li>
                     @endforeach
                 </ul>

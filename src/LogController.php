@@ -21,15 +21,17 @@ class LogController extends Controller
             $viewer = new LogViewer($file);
 
             $content->body(view('open-admin-logs::logs', [
-                'logs'      => $viewer->fetch($offset),
-                'logFiles'  => $viewer->getLogFiles(),
-                'fileName'  => $viewer->file,
-                'end'       => $viewer->getFilesize(),
-                'tailPath'  => route('log-viewer-tail', ['file' => $viewer->file]),
-                'prevUrl'   => $viewer->getPrevPageUrl(),
-                'nextUrl'   => $viewer->getNextPageUrl(),
-                'filePath'  => $viewer->getFilePath(),
-                'size'      => static::bytesToHuman($viewer->getFilesize()),
+                'logs'                           => $viewer->fetch($offset),
+                'logFiles'                       => $viewer->getLogFiles(),
+                'fileName'                       => $viewer->file,
+                'end'                            => $viewer->getFilesize(),
+                'tailPath'                       => route('log-viewer-tail', ['file' => $viewer->file]),
+                'prevUrl'                        => $viewer->getPrevPageUrl(),
+                'nextUrl'                        => $viewer->getNextPageUrl(),
+                'filePath'                       => $viewer->getFilePath(),
+                'size'                           => static::bytesToHuman($viewer->getFilesize()),
+                'bypass_protected_urls_find'     => $viewer->bypass_protected_urls_find,
+                'bypass_protected_urls_replace'  => $viewer->bypass_protected_urls_replace,
             ]));
 
             $content->header($viewer->getFilePath());
