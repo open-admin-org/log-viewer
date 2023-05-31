@@ -76,7 +76,7 @@ class LogViewer extends Extension
     {
         $this->bypass_protected_urls = static::config('bypass_protected_urls', false);
         if ($this->bypass_protected_urls) {
-            $this->bypass_protected_urls_find = static::config('bypass_protected_urls_find', ['.']);
+            $this->bypass_protected_urls_find    = static::config('bypass_protected_urls_find', ['.']);
             $this->bypass_protected_urls_replace = static::config('bypass_protected_urls_replace', ['[dot]']);
         }
 
@@ -180,7 +180,7 @@ class LogViewer extends Extension
         }
 
         return route('log-viewer-file', [
-            'file' => $this->file, 'offset' => $this->pageOffset['end'],
+            'file' => $this->set_bypass($this->file), 'offset' => $this->pageOffset['end'],
         ]);
     }
 
@@ -196,7 +196,7 @@ class LogViewer extends Extension
         }
 
         return route('log-viewer-file', [
-            'file' => $this->file, 'offset' => -$this->pageOffset['start'],
+            'file' => $this->set_bypass($this->file), 'offset' => -$this->pageOffset['start'],
         ]);
     }
 
@@ -246,7 +246,7 @@ class LogViewer extends Extension
 
             while ($lines++ < 0) {
                 $strpos = strrpos($output, "\n[20") + 1;
-                $_ = mb_strlen($output, '8bit') - $strpos;
+                $_      = mb_strlen($output, '8bit') - $strpos;
                 $output = substr($output, 0, $strpos);
                 $this->pageOffset['end'] -= $_;
             }
